@@ -1,0 +1,291 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.slionh.societynews.mapper.DbTencent.NewsMapper" >
+  <resultMap id="BaseResultMap" type="com.slionh.societynews.entity.News" >
+    <id column="idNews" property="idnews" jdbcType="INTEGER" />
+    <result column="title" property="title" jdbcType="VARCHAR" />
+    <result column="content" property="content" jdbcType="VARCHAR" />
+    <result column="journal" property="journal" jdbcType="VARCHAR" />
+    <result column="publishTime" property="publishtime" jdbcType="TIMESTAMP" />
+    <result column="createTime" property="createtime" jdbcType="TIMESTAMP" />
+    <result column="newsSource" property="newssource" jdbcType="VARCHAR" />
+    <result column="subhead" property="subhead" jdbcType="VARCHAR" />
+    <result column="url" property="url" jdbcType="VARCHAR" />
+    <result column="other" property="other" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    idNews, title, content, journal, publishTime, createTime, newsSource, subhead, url, 
+    other
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.slionh.societynews.entity.NewsExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from news
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from news
+    where idNews = #{idnews,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from news
+    where idNews = #{idnews,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.slionh.societynews.entity.NewsExample" >
+    delete from news
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.slionh.societynews.entity.News" >
+    <selectKey resultType="java.lang.Integer" keyProperty="idnews" order="AFTER" >
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into news (title, content, journal, 
+      publishTime, createTime, newsSource, 
+      subhead, url, other
+      )
+    values (#{title,jdbcType=VARCHAR}, #{content,jdbcType=VARCHAR}, #{journal,jdbcType=VARCHAR}, 
+      #{publishtime,jdbcType=TIMESTAMP}, #{createtime,jdbcType=TIMESTAMP}, #{newssource,jdbcType=VARCHAR}, 
+      #{subhead,jdbcType=VARCHAR}, #{url,jdbcType=VARCHAR}, #{other,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.slionh.societynews.entity.News" >
+    <selectKey resultType="java.lang.Integer" keyProperty="idnews" order="AFTER" >
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into news
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="title != null" >
+        title,
+      </if>
+      <if test="content != null" >
+        content,
+      </if>
+      <if test="journal != null" >
+        journal,
+      </if>
+      <if test="publishtime != null" >
+        publishTime,
+      </if>
+      <if test="createtime != null" >
+        createTime,
+      </if>
+      <if test="newssource != null" >
+        newsSource,
+      </if>
+      <if test="subhead != null" >
+        subhead,
+      </if>
+      <if test="url != null" >
+        url,
+      </if>
+      <if test="other != null" >
+        other,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="title != null" >
+        #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="content != null" >
+        #{content,jdbcType=VARCHAR},
+      </if>
+      <if test="journal != null" >
+        #{journal,jdbcType=VARCHAR},
+      </if>
+      <if test="publishtime != null" >
+        #{publishtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createtime != null" >
+        #{createtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="newssource != null" >
+        #{newssource,jdbcType=VARCHAR},
+      </if>
+      <if test="subhead != null" >
+        #{subhead,jdbcType=VARCHAR},
+      </if>
+      <if test="url != null" >
+        #{url,jdbcType=VARCHAR},
+      </if>
+      <if test="other != null" >
+        #{other,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.slionh.societynews.entity.NewsExample" resultType="java.lang.Integer" >
+    select count(*) from news
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update news
+    <set >
+      <if test="record.idnews != null" >
+        idNews = #{record.idnews,jdbcType=INTEGER},
+      </if>
+      <if test="record.title != null" >
+        title = #{record.title,jdbcType=VARCHAR},
+      </if>
+      <if test="record.content != null" >
+        content = #{record.content,jdbcType=VARCHAR},
+      </if>
+      <if test="record.journal != null" >
+        journal = #{record.journal,jdbcType=VARCHAR},
+      </if>
+      <if test="record.publishtime != null" >
+        publishTime = #{record.publishtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.createtime != null" >
+        createTime = #{record.createtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.newssource != null" >
+        newsSource = #{record.newssource,jdbcType=VARCHAR},
+      </if>
+      <if test="record.subhead != null" >
+        subhead = #{record.subhead,jdbcType=VARCHAR},
+      </if>
+      <if test="record.url != null" >
+        url = #{record.url,jdbcType=VARCHAR},
+      </if>
+      <if test="record.other != null" >
+        other = #{record.other,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update news
+    set idNews = #{record.idnews,jdbcType=INTEGER},
+      title = #{record.title,jdbcType=VARCHAR},
+      content = #{record.content,jdbcType=VARCHAR},
+      journal = #{record.journal,jdbcType=VARCHAR},
+      publishTime = #{record.publishtime,jdbcType=TIMESTAMP},
+      createTime = #{record.createtime,jdbcType=TIMESTAMP},
+      newsSource = #{record.newssource,jdbcType=VARCHAR},
+      subhead = #{record.subhead,jdbcType=VARCHAR},
+      url = #{record.url,jdbcType=VARCHAR},
+      other = #{record.other,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.slionh.societynews.entity.News" >
+    update news
+    <set >
+      <if test="title != null" >
+        title = #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="content != null" >
+        content = #{content,jdbcType=VARCHAR},
+      </if>
+      <if test="journal != null" >
+        journal = #{journal,jdbcType=VARCHAR},
+      </if>
+      <if test="publishtime != null" >
+        publishTime = #{publishtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createtime != null" >
+        createTime = #{createtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="newssource != null" >
+        newsSource = #{newssource,jdbcType=VARCHAR},
+      </if>
+      <if test="subhead != null" >
+        subhead = #{subhead,jdbcType=VARCHAR},
+      </if>
+      <if test="url != null" >
+        url = #{url,jdbcType=VARCHAR},
+      </if>
+      <if test="other != null" >
+        other = #{other,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where idNews = #{idnews,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.slionh.societynews.entity.News" >
+    update news
+    set title = #{title,jdbcType=VARCHAR},
+      content = #{content,jdbcType=VARCHAR},
+      journal = #{journal,jdbcType=VARCHAR},
+      publishTime = #{publishtime,jdbcType=TIMESTAMP},
+      createTime = #{createtime,jdbcType=TIMESTAMP},
+      newsSource = #{newssource,jdbcType=VARCHAR},
+      subhead = #{subhead,jdbcType=VARCHAR},
+      url = #{url,jdbcType=VARCHAR},
+      other = #{other,jdbcType=VARCHAR}
+    where idNews = #{idnews,jdbcType=INTEGER}
+  </update>
+</mapper>

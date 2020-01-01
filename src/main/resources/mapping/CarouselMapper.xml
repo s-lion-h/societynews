@@ -1,0 +1,273 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.slionh.societynews.mapper.dbAli.CarouselMapper" >
+  <resultMap id="BaseResultMap" type="com.slionh.societynews.entity.Carousel" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="content" property="content" jdbcType="VARCHAR" />
+    <result column="url" property="url" jdbcType="VARCHAR" />
+    <result column="image" property="image" jdbcType="VARCHAR" />
+    <result column="createtime" property="createtime" jdbcType="TIMESTAMP" />
+    <result column="createrid" property="createrid" jdbcType="VARCHAR" />
+    <result column="creatername" property="creatername" jdbcType="VARCHAR" />
+    <result column="location" property="location" jdbcType="VARCHAR" />
+    <result column="type" property="type" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    id, content, url, image, createtime, createrid, creatername, location, type
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.slionh.societynews.entity.CarouselExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from carousel
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from carousel
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from carousel
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.slionh.societynews.entity.CarouselExample" >
+    delete from carousel
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.slionh.societynews.entity.Carousel" >
+    <selectKey resultType="java.lang.Integer" keyProperty="id" order="AFTER" >
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into carousel (content, url, image, 
+      createtime, createrid, creatername, 
+      location, type)
+    values (#{content,jdbcType=VARCHAR}, #{url,jdbcType=VARCHAR}, #{image,jdbcType=VARCHAR}, 
+      #{createtime,jdbcType=TIMESTAMP}, #{createrid,jdbcType=VARCHAR}, #{creatername,jdbcType=VARCHAR}, 
+      #{location,jdbcType=VARCHAR}, #{type,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.slionh.societynews.entity.Carousel" >
+    <selectKey resultType="java.lang.Integer" keyProperty="id" order="AFTER" >
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into carousel
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="content != null" >
+        content,
+      </if>
+      <if test="url != null" >
+        url,
+      </if>
+      <if test="image != null" >
+        image,
+      </if>
+      <if test="createtime != null" >
+        createtime,
+      </if>
+      <if test="createrid != null" >
+        createrid,
+      </if>
+      <if test="creatername != null" >
+        creatername,
+      </if>
+      <if test="location != null" >
+        location,
+      </if>
+      <if test="type != null" >
+        type,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="content != null" >
+        #{content,jdbcType=VARCHAR},
+      </if>
+      <if test="url != null" >
+        #{url,jdbcType=VARCHAR},
+      </if>
+      <if test="image != null" >
+        #{image,jdbcType=VARCHAR},
+      </if>
+      <if test="createtime != null" >
+        #{createtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createrid != null" >
+        #{createrid,jdbcType=VARCHAR},
+      </if>
+      <if test="creatername != null" >
+        #{creatername,jdbcType=VARCHAR},
+      </if>
+      <if test="location != null" >
+        #{location,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null" >
+        #{type,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.slionh.societynews.entity.CarouselExample" resultType="java.lang.Integer" >
+    select count(*) from carousel
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update carousel
+    <set >
+      <if test="record.id != null" >
+        id = #{record.id,jdbcType=INTEGER},
+      </if>
+      <if test="record.content != null" >
+        content = #{record.content,jdbcType=VARCHAR},
+      </if>
+      <if test="record.url != null" >
+        url = #{record.url,jdbcType=VARCHAR},
+      </if>
+      <if test="record.image != null" >
+        image = #{record.image,jdbcType=VARCHAR},
+      </if>
+      <if test="record.createtime != null" >
+        createtime = #{record.createtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.createrid != null" >
+        createrid = #{record.createrid,jdbcType=VARCHAR},
+      </if>
+      <if test="record.creatername != null" >
+        creatername = #{record.creatername,jdbcType=VARCHAR},
+      </if>
+      <if test="record.location != null" >
+        location = #{record.location,jdbcType=VARCHAR},
+      </if>
+      <if test="record.type != null" >
+        type = #{record.type,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update carousel
+    set id = #{record.id,jdbcType=INTEGER},
+      content = #{record.content,jdbcType=VARCHAR},
+      url = #{record.url,jdbcType=VARCHAR},
+      image = #{record.image,jdbcType=VARCHAR},
+      createtime = #{record.createtime,jdbcType=TIMESTAMP},
+      createrid = #{record.createrid,jdbcType=VARCHAR},
+      creatername = #{record.creatername,jdbcType=VARCHAR},
+      location = #{record.location,jdbcType=VARCHAR},
+      type = #{record.type,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.slionh.societynews.entity.Carousel" >
+    update carousel
+    <set >
+      <if test="content != null" >
+        content = #{content,jdbcType=VARCHAR},
+      </if>
+      <if test="url != null" >
+        url = #{url,jdbcType=VARCHAR},
+      </if>
+      <if test="image != null" >
+        image = #{image,jdbcType=VARCHAR},
+      </if>
+      <if test="createtime != null" >
+        createtime = #{createtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createrid != null" >
+        createrid = #{createrid,jdbcType=VARCHAR},
+      </if>
+      <if test="creatername != null" >
+        creatername = #{creatername,jdbcType=VARCHAR},
+      </if>
+      <if test="location != null" >
+        location = #{location,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null" >
+        type = #{type,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.slionh.societynews.entity.Carousel" >
+    update carousel
+    set content = #{content,jdbcType=VARCHAR},
+      url = #{url,jdbcType=VARCHAR},
+      image = #{image,jdbcType=VARCHAR},
+      createtime = #{createtime,jdbcType=TIMESTAMP},
+      createrid = #{createrid,jdbcType=VARCHAR},
+      creatername = #{creatername,jdbcType=VARCHAR},
+      location = #{location,jdbcType=VARCHAR},
+      type = #{type,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>
