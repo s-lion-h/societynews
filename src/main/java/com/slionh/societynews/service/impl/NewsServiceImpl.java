@@ -23,7 +23,9 @@ public class NewsServiceImpl implements NewsService {
 
     @Override
     public News getNewsDetail(Integer id) {
-        return newsMapper.selectByPrimaryKey(id);
+        News news = newsMapper.selectByPrimaryKey(id);
+//        news.setContent(news.getContent().replace(" 　　","&lt;br/&gt;"));
+        return news;
     }
 
     @Override

@@ -97,6 +97,7 @@
     select
     <include refid="Primary_Column_List" />
      from news where idNews > (select max(idnews) from news) -#{count}
+    order by publishtime desc
   </select>
   <select id="listLatestClassificationNews" resultMap="BaseResultMap" >
     select

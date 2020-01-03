@@ -7,15 +7,17 @@
             <tr>
                 <th scope="col">序号</th>
                 <th scope="col">标题</th>
-                <th scope="col">发布商</th>
+                <th scope="col">数据源</th>
+                <th scope="col">报刊</th>
                 <th scope="col">发布时间</th>
             </tr>
             </thead>
             <tbody>
             <tr th:each="news:${latestNewsList}">
                 <th th:text="${news.idnews}"></th>
-                <td th:text="${news.title}"></td>
+                <td><a th:href="'/newsDetail?newsId='+${news.idnews}" th:text="${news.title}"></a></td>
                 <td th:text="${news.journal}"></td>
+                <td th:text="${news.newssource}"></td>
                 <td th:text="${#dates.format(news.publishtime,'yyyy年MM月dd日 HH:mm:ss')}"></td>
             </tr>
             </tbody>
