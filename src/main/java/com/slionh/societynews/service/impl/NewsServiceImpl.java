@@ -8,6 +8,7 @@ import com.slionh.societynews.service.NewsService;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
+import java.util.List;
 
 /*
  * Create by s lion h on 2020-01-01
@@ -21,8 +22,18 @@ public class NewsServiceImpl implements NewsService {
     private CarouselMapper carouselMapper;
 
     @Override
-    public News getNews(Integer id) {
+    public News getNewsDetail(Integer id) {
         return newsMapper.selectByPrimaryKey(id);
+    }
+
+    @Override
+    public List<News> listLatestNews(Integer count) {
+        return newsMapper.listLatestNews(count);
+    }
+
+    @Override
+    public List<News> listLatestClassificationNews(String classification, Integer count) {
+        return newsMapper.listLatestClassificationNews(classification,count);
     }
 
     @Override

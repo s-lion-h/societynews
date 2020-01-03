@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="">
+<head>
+    <meta charset="UTF-8">
+    <title>index</title>
+    <link href="/bootstrap/bootstrap.min.css" rel="stylesheet">
+    <!-- Scripts -->
+    <script src="/bootstrap/jquery-3.3.1.slim.min.js"></script>
+    <script src="/bootstrap/bootstrap.min.js"></script>
+</head>
+<body>
+<th:block th:include="nav::nav"></th:block>
+<div class="container">
+    <th:block th:include="classificationLabel::classificationLabel"></th:block>
+    <th:block th:include="hotNews::hotNews"></th:block>
+</div>
+</body>
+</html>

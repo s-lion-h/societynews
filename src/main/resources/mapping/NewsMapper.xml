@@ -75,6 +75,10 @@
     idNews, title, content, journal, publishTime, createTime, newsSource, subhead, url, 
     other
   </sql>
+  <sql id="Primary_Column_List" >
+    idNews, title, journal, publishTime, createTime, newsSource, subhead, url,
+    other
+  </sql>
   <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.slionh.societynews.entity.NewsExample" >
     select
     <if test="distinct" >
@@ -88,6 +92,19 @@
     <if test="orderByClause != null" >
       order by ${orderByClause}
     </if>
+  </select>
+  <select id="listLatestNews" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select
+    <include refid="Primary_Column_List" />
+     from news where idNews > (select max(idnews) from news) -#{count}
+  </select>
+  <select id="listLatestClassificationNews" resultMap="BaseResultMap" >
+    select
+    <include refid="Primary_Column_List" />
+    FROM generalClassification g
+    left join news n
+    on n.idNews = g.newsId
+    where g.classification = #{classification} order by g.idGeneralClassification desc limit #{count}
   </select>
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
     select 

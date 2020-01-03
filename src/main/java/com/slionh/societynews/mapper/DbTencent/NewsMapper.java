@@ -18,6 +18,10 @@ public interface NewsMapper {
 
     List<News> selectByExample(NewsExample example);
 
+    List<News> listLatestClassificationNews(@Param("classification")String classification , @Param("count")Integer count);
+
+    List<News> listLatestNews(Integer count);
+
     News selectByPrimaryKey(Integer idnews);
 
     int updateByExampleSelective(@Param("record") News record, @Param("example") NewsExample example);

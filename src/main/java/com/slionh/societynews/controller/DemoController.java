@@ -21,7 +21,7 @@ public class DemoController {
         Integer carouselId = 1;
 
 
-        return newsService.getCarousel(carouselId).toString()+newsService.getNews(newsId).toString();
+        return newsService.getCarousel(carouselId).toString()+newsService.getNewsDetail(newsId).toString();
 //        return newsService.getNews(newsId).toString();
     }
 }
