@@ -37,6 +37,10 @@ public class NewsServiceImpl implements NewsService {
     public List<News> listLatestClassificationNews(String classification, Integer count) {
         return newsMapper.listLatestClassificationNews(classification,count);
     }
+    @Override
+    public List<News> selectByLikeTitleKey(String key) {
+        return newsMapper.selectByLikeTitleKey("%"+key+"%");
+    }
 
     @Override
     public Carousel getCarousel(Integer id) {

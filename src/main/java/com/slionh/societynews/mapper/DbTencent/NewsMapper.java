@@ -16,6 +16,8 @@ public interface NewsMapper {
 
     int insertSelective(News record);
 
+    List<News> selectByLikeTitleKey(@Param("key") String key);
+
     List<News> selectByExample(NewsExample example);
 
     List<News> listLatestClassificationNews(@Param("classification")String classification , @Param("count")Integer count);

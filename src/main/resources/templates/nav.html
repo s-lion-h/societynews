@@ -1,9 +1,10 @@
 <div th:fragment="nav" xmlns:th="http://www.w3.org/1999/xhtml">
     <nav class="navbar navbar-light bg-light">
-        <a class="navbar-brand">Navbar</a>
-        <form class="form-inline">
-            <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+        <a href="/"><img src="/logo/logo.svg" alt="" class="img-rounded img-fluid navbar-brand"></a>
+        <!--<a class="navbar-brand" href="/">Plenty News</a>-->
+        <form class="form-inline" action="titleKey">
+            <input class="form-control mr-sm-2" name="key" placeholder="Search" aria-label="Search">
+            <input class="btn btn-outline-danger my-2 my-sm-0" type="submit" value="搜索关键词"></input>
         </form>
     </nav>
 </div>

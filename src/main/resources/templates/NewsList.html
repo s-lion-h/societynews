@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>NewsList</title>
+    <script src="https://cdn.bootcss.com/twitter-bootstrap/4.3.1/js/bootstrap.js"></script>
+    <link href="https://cdn.bootcss.com/twitter-bootstrap/4.3.1/css/bootstrap.css" rel="stylesheet">
+</head>
+<body>
+<form action="/titleKey">
+    <label for="key">关键词</label>
+    <input type="text" name="key" id="key"/>
+    <input type="submit"/>
+</form>
+<hr>
+<table class="table">
+    <thead class="thead-dark">
+    <tr>
+        <th scope="col" style="min-width: 200px;">title</th>
+        <th scope="col" style="min-width: 200px;">dateTime</th>
+        <th scope="col">content</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="news:${newsList}">
+        <td th:text="${news.title}"></td>
+        <td th:text="${#dates.format(news.publishtime, 'yyyy年MM月dd日 HH:mm:ss')}"></td>
+        <td th:text="${news.content}"></td>
+    </tr>
+    </tbody>
+</table>
+</body>
+</html>

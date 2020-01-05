@@ -79,6 +79,10 @@
     idNews, title, journal, publishTime, createTime, newsSource, subhead, url,
     other
   </sql>
+  <sql id="Primary_Column_List_Join" >
+    idNews, title, journal, publishTime, n.createTime, newsSource, subhead, url,
+    n.other
+  </sql>
   <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.slionh.societynews.entity.NewsExample" >
     select
     <if test="distinct" >
@@ -101,7 +105,7 @@
   </select>
   <select id="listLatestClassificationNews" resultMap="BaseResultMap" >
     select
-    <include refid="Primary_Column_List" />
+    <include refid="Primary_Column_List_Join" />
     FROM generalClassification g
     left join news n
     on n.idNews = g.newsId
@@ -306,4 +310,7 @@
       other = #{other,jdbcType=VARCHAR}
     where idNews = #{idnews,jdbcType=INTEGER}
   </update>
+  <select id="selectByLikeTitleKey" parameterType="String" resultMap="BaseResultMap">
+    select n.title,n.publishTime,n.content from news n where n.idNews>(select max(idNews) from news)-20000 and n.title like #{key} order by n.publishtime desc limit 50
+  </select>
 </mapper>

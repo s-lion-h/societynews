@@ -18,6 +18,7 @@ public interface NewsService {
     //list某一类型新闻的最新新闻，默认使用一级行业分类
     List<News> listLatestClassificationNews(String classification ,Integer count);
 
+    List<News> selectByLikeTitleKey(String key);
 
     Carousel getCarousel(Integer id);
 }

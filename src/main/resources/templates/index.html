@@ -7,12 +7,29 @@
     <!-- Scripts -->
     <script src="/bootstrap/jquery-3.3.1.slim.min.js"></script>
     <script src="/bootstrap/bootstrap.min.js"></script>
+    <style>
+        a:link,a:visited{color:#444;text-decoration:none;}
+        a:hover{color: #ff0000;}
+        body {
+            background-size: cover;
+            /*background: url(/logo/background.jpg) fixed left top;*/
+            background-color: #f2f2dd;
+        }
+        .touming {
+            background-color: rgba(255,255,255,0.7);
+        }
+    </style>
 </head>
 <body>
-<th:block th:include="nav::nav"></th:block>
-<div class="container">
+<div class="container touming">
+    <th:block th:include="nav::nav"></th:block>
     <th:block th:include="classificationLabel::classificationLabel"></th:block>
     <th:block th:include="hotNews::hotNews"></th:block>
+    <div class="row">
+        <th:block th:include="classificationNewsIndex1::classificationNewsIndex1"></th:block>
+    </div>
+    <th:block th:include="footer::footer"></th:block>
+
 </div>
 </body>
 </html>
