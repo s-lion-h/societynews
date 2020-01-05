@@ -1,0 +1,50 @@
+<div th:fragment="carousel" xmlns:th="http://www.w3.org/1999/xhtml">
+    <div class="row">
+        <div class="col text-dark">
+            <div id="carouselExampleCaptions" class="carousel slide" data-ride="carousel" style="padding-left: 0px;padding-right: 0px; height: 250px;overflow: hidden">
+                <ol class="carousel-indicators">
+                    <li data-target="#carouselExampleCaptions" data-slide-to="0" class="active"></li>
+                    <li data-target="#carouselExampleCaptions" data-slide-to="1"></li>
+                    <li data-target="#carouselExampleCaptions" data-slide-to="2"></li>
+                </ol>
+                <div class="carousel-inner">
+                    <div class="carousel-item active">
+                        <a href="/newsDetail?newsId=602908">
+                        <img src="/news/xi.jpg" class="d-block w-100" style="" alt="...">
+                        <div class="carousel-caption d-none d-md-block" style="bottom: 40%; color: #ff0000;">
+                            <h5>2020年新年贺词 习近平和大家谈“心”</h5>
+                            <p>New Year's Message in 2020 Xi Jinping talks with everyone about "heart"</p>
+                        </div>
+                        </a>
+                    </div>
+                    <div class="carousel-item ">
+                        <a href="/newsDetail?newsId=613960">
+                        <img src="/news/trump.jpg" class="d-block w-100" style="" alt="...">
+                        <div class="carousel-caption d-none d-md-block">
+                            <h5>特朗普警告伊朗若袭击美方目标将遭到迅猛打击</h5>
+                            <p>Trump warns Iran will be hit sharply if it attacks U.S. targets</p>
+                        </div>
+                        </a>
+                    </div>
+                    <div class="carousel-item">
+                        <a href="/newsDetail?newsId=612553">
+                        <img src="/news/iron.jpg" class="d-block w-100" style="" alt="...">
+                        <div class="carousel-caption d-none d-md-block">
+                            <h5>伊朗指挥官伊拉克遇袭促油价上涨</h5>
+                            <p>Iranian attack on Iraqi commander raises oil prices</p>
+                        </div>
+                        </a>
+                    </div>
+                </div>
+                <a class="carousel-control-prev" href="#carouselExampleCaptions" role="button" data-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="sr-only">Previous</span>
+                </a>
+                <a class="carousel-control-next" href="#carouselExampleCaptions" role="button" data-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="sr-only">Next</span>
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
